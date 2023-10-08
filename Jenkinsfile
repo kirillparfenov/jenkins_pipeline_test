@@ -8,9 +8,21 @@ pipeline {
     }
 
     stage('deploy') {
-      steps {
-        sleep 10
-        echo 'deploy success'
+      parallel {
+        stage('deploy') {
+          steps {
+            sleep 10
+            echo 'deploy success'
+          }
+        }
+
+        stage('deploy2') {
+          steps {
+            sleep 30
+            echo 'deploy 2 success'
+          }
+        }
+
       }
     }
 
